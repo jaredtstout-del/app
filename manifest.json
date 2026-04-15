@@ -1,0 +1,18 @@
+{
+  "name": "The Home Buying & Selling App",
+  "short_name": "Home Buy & Sell",
+  "description": "Free tools to buy, sell, and plan your next move.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef6fb",
+  "theme_color": "#0c4a6e",
+  "icons": [
+    {
+      "src": "app-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
