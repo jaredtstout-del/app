@@ -6,8 +6,8 @@
 <title>The Home Buying & Selling App</title>
 <meta name="theme-color" content="#0c4a6e" />
 <link rel="manifest" href="manifest.json" />
-<link rel="icon" href="app-icon.png" />
-<link rel="apple-touch-icon" href="app-icon.png" />
+<link rel="icon" type="image/png" href="app-icon.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <style>
 :root{--bg:#eef6fb;--card:#fff;--text:#0f172a;--muted:#475569;--brand:#0c4a6e;--brand2:#0369a1;--accent:#e0f2fe;--border:#dbeafe;--shadow:0 10px 30px rgba(2,32,71,.12)}
 *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,#f7fbff 0%,#eef6fb 100%)} a{color:inherit}
@@ -85,34 +85,78 @@ h1{font-size:clamp(32px,5vw,56px);line-height:1.02;margin:0} .sub{max-width:760p
 @media (max-width:900px){.advanced-search-box{grid-template-columns:1fr 1fr}.advanced-search-box button{grid-column:1/-1}.search-heading h2{font-size:26px}}
 @media (max-width:640px){.advanced-search-box{grid-template-columns:1fr}}
 
+
+.hero-logo-wrap{display:flex;justify-content:center;align-items:center;margin-bottom:14px}
+.hero-top-logo{width:min(100%,780px);height:auto;display:block;border-radius:22px}
+.btn-dark-email{background:#0f172a !important;color:#fff !important;border-color:#0f172a !important}
+.btn-dark-email:hover{background:#111827 !important}
+
+
+.wrap{padding-top:10px !important}
+.app-hero{padding:10px 12px 12px !important;margin-bottom:8px !important}
+.hero-logo-wrap{margin-bottom:6px !important}
+.hero-logo-link{display:flex;justify-content:center;align-items:center;text-decoration:none;cursor:pointer}
+.hero-top-logo{width:min(100%,760px) !important;border-radius:18px;transition:transform .25s ease, box-shadow .25s ease;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.hero-logo-link:hover .hero-top-logo{transform:translateY(-2px)}
+.hero-copy{padding:6px 4px 0 !important}
+.hero-copy h1{font-size:clamp(22px,4.6vw,40px) !important;margin:0 0 6px !important}
+.hero-copy .sub{margin:0 auto 8px !important;font-size:15px !important;max-width:820px}
+.hero-actions{gap:10px !important}
+.hero-actions .btn{padding:10px 14px !important;font-size:14px !important}
+.compact-install{margin:6px 0 8px !important;padding:8px 12px !important;font-size:13px !important}
+.entry-cards{margin:8px 0 14px !important;gap:12px !important}
+.entry-card{padding:16px 16px 14px !important}
+.entry-card h3{font-size:20px !important;margin-bottom:6px !important}
+.entry-card p,.entry-card .subline{font-size:14px !important}
+.entry-card .actions{margin-top:12px !important}
+.entry-card .btn{padding:11px 14px !important;font-size:14px !important}
+.top-cards{margin:8px 0 14px !important;gap:10px !important}
+.info-card{padding:12px 14px !important}
+.tabs{margin:0 0 12px !important;gap:10px !important}
+.tab{padding:12px 12px !important;font-size:14px !important}
+#calc-start{position:relative;top:-6px}
+@media (max-width:760px){
+  .wrap{padding-top:6px !important}
+  .app-hero{padding:8px 8px 10px !important}
+  .hero-top-logo{border-radius:14px}
+  .hero-copy h1{font-size:clamp(20px,7vw,30px) !important}
+  .hero-copy .sub{font-size:14px !important}
+  .hero-actions{justify-content:center}
+  .compact-install{gap:4px !important}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero-top-logo{animation:heroFloat 3.2s ease-in-out infinite}
+  @keyframes heroFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-3px)}
+  }
+}
+
+
+.closing-tabs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 16px}
+.closing-subtab{border:none;background:#fff;border-radius:18px;padding:14px 16px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);font-size:15px}
+.closing-subtab.active{background:var(--brand);color:#fff}
+.closing-panel{display:none}
+.closing-panel.active{display:block}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 
+
 <section class="hero app-hero">
-  <div class="brand-strip">
-    <div class="brand-left">
-      <img src="exp-logo.jpg" alt="eXp Realty logo" class="exp-top-logo" />
-      <div class="brand-address">
-        <strong>eXp Realty</strong><br>
-        101 W Big Beaver Rd, Suite 1400<br>
-        Troy, MI 48084
-      </div>
-    </div>
-    <div class="brand-divider"></div>
-    <div class="brand-right">
-      <img src="jared-brand-logo.png" alt="Jared Stout Real Estate logo" class="jared-top-logo" />
-    </div>
-  </div>
+  <a class="hero-logo-wrap hero-logo-link" href="#calc-start" onclick="document.getElementById('calc-start').scrollIntoView({behavior:'smooth', block:'start'}); return false;">
+    <img src="app-top-logo.png" alt="Jared Stout Real Estate and eXp Realty logo" class="hero-top-logo" />
+  </a>
 
   <div class="hero-copy">
     <div class="badge badge-dark">Home Buying &amp; Selling Made Simple</div>
-    <h1>Powerful tools to help you buy, sell, and plan your next move.</h1>
+    <h1></h1>
     <p class="sub">Check your net proceeds, buying power, monthly payment, Michigan property taxes, and live home search — all in one place.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="tel:2695992008">Call Jared</a>
-      <a class="btn btn-secondary" href="mailto:jared@listingsforyou.com">Email Jared</a>
+      <a class="btn btn-secondary btn-dark-email" href="mailto:jared@listingsforyou.com">Email Jared</a>
     </div>
   </div>
 </section>
@@ -123,7 +167,16 @@ h1{font-size:clamp(32px,5vw,56px);line-height:1.02;margin:0} .sub{max-width:760p
 </section>
 
 
+<div id="calc-start"></div>
+
 <section class="entry-cards">
+  <div class="entry-card">
+    <div class="eyebrow">Most Relevant</div>
+    <h3>Closing Costs</h3>
+    <p>See what it may actually cost to buy or sell a home, before and at closing.</p>
+    <div class="subline">Start here to understand the real money side of the deal.</div>
+    <div class="actions"><button class="btn btn-solid" onclick="openTab('closing');scrollToTabs();">Estimate Closing Costs</button></div>
+  </div>
 <div class="entry-card"><div class="eyebrow">For Home Sellers</div><h3>How Much Will I Make Selling My Home?</h3><p>See what you could walk away with after commissions, fees, and your mortgage payoff.</p><div class="subline">Don’t be surprised at closing — know your number first.</div><div class="actions"><button class="btn btn-solid" onclick="openTab('net');scrollToTabs();">Calculate My Net Proceeds</button></div></div>
 <div class="entry-card"><div class="eyebrow">For Home Buyers</div><h3>How Much House Can I Afford?</h3><p>Find your real price range based on your income, debt, and today’s rates.</p><div class="subline">Stop guessing — know your real budget before you shop.</div><div class="actions"><button class="btn btn-solid" onclick="openTab('affordability');scrollToTabs();">Find My Price Range</button></div></div>
 <div class="entry-card"><div class="eyebrow">Monthly Payment</div><h3>What Will My Monthly Payment Be?</h3><p>Estimate your monthly payment before you start looking at homes.</p><div class="subline">See the payment before you fall in love with the house.</div><div class="actions"><button class="btn btn-solid" onclick="openTab('mortgage');scrollToTabs();">Estimate My Payment</button></div></div>
@@ -144,15 +197,254 @@ h1{font-size:clamp(32px,5vw,56px);line-height:1.02;margin:0} .sub{max-width:760p
 <div class="info-card"><div class="info-label">Home Valuation</div><div class="info-value"><a href="https://listingsforyou.com/evaluation" target="_blank">Get Free Value</a></div></div>
 </section>
 
+
 <section class="tabs">
-<button class="tab active" data-tab="net">Selling My Home</button>
-<button class="tab" data-tab="affordability">Buying a Home</button>
-<button class="tab" data-tab="mortgage">Monthly Payment</button>
-<button class="tab" data-tab="tax">MI Property Taxes</button>
-<button class="tab" data-tab="basic">Quick Math</button>
+  <button class="tab active" data-tab="closing">Closing Costs</button>
+  <button class="tab" data-tab="net">Selling My Home</button>
+  <button class="tab" data-tab="affordability">Buying a Home</button>
+  <button class="tab" data-tab="mortgage">Monthly Payment</button>
+  <button class="tab" data-tab="tax">MI Property Taxes</button>
+  <button class="tab" data-tab="basic">Quick Math</button>
 </section>
 
-<section id="net" class="panel active"><div class="calc-grid"><div class="card"><div class="section-title"><div class="icon-box">💰</div><div><h2>What You’ll Walk Away With</h2><p>Enter your home details to estimate how much money you’ll take home after the sale.</p></div></div><div class="form-grid"><div class="full"><label for="address">Property Address</label><input id="address" type="text" placeholder="Start typing address..." autocomplete="off" /></div><div class="full"><label for="salePrice">Sale Price ($)</label><input type="number" id="salePrice" placeholder="Enter sale price" value="350000" /></div><div><div class="percent-row"><label for="titleInsuranceAmount" style="margin:0;">Title Insurance</label><div class="pct-wrap"><input class="pct-input" type="number" id="titleInsurancePct" value="1" step="0.01" /><span>%</span></div></div><input class="readonly-output" type="number" id="titleInsuranceAmount" placeholder="$ amount" readonly /></div><div><div class="percent-row"><label for="taxesFeesAmount" style="margin:0;">Taxes and Fees</label><div class="pct-wrap"><input class="pct-input" type="number" id="taxesFeesPct" value="1" step="0.01" /><span>%</span></div></div><input class="readonly-output" type="number" id="taxesFeesAmount" placeholder="$ amount" readonly /></div><div><div class="percent-row"><label for="buyerCommissionAmount" style="margin:0;">Buyer Agent Commission</label><div class="pct-wrap"><input class="pct-input" type="number" id="buyerCommissionPct" step="0.01" /><span>%</span></div></div><input class="readonly-output" type="number" id="buyerCommissionAmount" placeholder="$ amount" readonly /></div><div><div class="percent-row"><label for="sellerCommissionAmount" style="margin:0;">Seller Agent Commission</label><div class="pct-wrap"><input class="pct-input" type="number" id="sellerCommissionPct" step="0.01" /><span>%</span></div></div><input class="readonly-output" type="number" id="sellerCommissionAmount" placeholder="$ amount" readonly /></div><div><label for="closingCosts">Closing Costs Paid by Seller ($)</label><input type="number" id="closingCosts" placeholder="Enter closing costs paid by seller" /></div><div><label for="amountOwed">Amount Owed ($)</label><input type="number" id="amountOwed" placeholder="Enter amount owed on mortgage or liens" /></div></div><div class="actions"><button class="btn btn-solid" onclick="calculateNet(true)">Calculate What I’ll Make</button><a class="btn btn-outline" href="https://listingsforyou.com/evaluation" target="_blank">Get Home Valuation</a><a class="btn btn-outline" id="netEmailLink" href="#">Email Jared This Address</a></div><div class="disclaimer">These calculations are estimates and do not reflect final numbers. Actual costs, payments, and proceeds may vary.</div></div><div class="card"><div id="sellerResult" style="font-size:22px;font-weight:800;margin-bottom:8px;">Your Estimated Results</div><div style="color:#64748b;margin-bottom:14px;">Uses your corrected percentage-based math and updated fields.</div><div class="summary-box"><div class="row"><span>Title insurance</span><strong id="sumTitle">$0</strong></div><div class="row"><span>Taxes and fees</span><strong id="sumTaxes">$0</strong></div><div class="row"><span>Buyer agent commission</span><strong id="sumBuyer">$0</strong></div><div class="row"><span>Seller agent commission</span><strong id="sumSeller">$0</strong></div><div class="row"><span>Closing costs</span><strong id="sumClosing">$0</strong></div><div class="row"><span>Amount owed</span><strong id="sumOwed">$0</strong></div><div class="row"><span>Total costs</span><strong id="sumTotal">$0</strong></div><div class="row total"><span>Seller net proceeds</span><span id="sumNet">$0</span></div></div><div id="results" class="results-card"><div class="small">Total Costs</div><div class="costs">$0.00</div><div class="net-label">Seller Net Proceeds</div><div class="net">$0.00</div></div><div class="note">This matches the logic from your revised calculator, just restyled to fit the app.</div><div class="actions"><a class="btn btn-solid" href="tel:2695992008">Call Jared</a><a class="btn btn-outline" href="mailto:jared@listingsforyou.com">Email Jared</a></div></div></div></section>
+
+
+<section id="closing" class="panel active">
+  <div class="closing-tabs">
+    <button class="closing-subtab active" data-closing-tab="closingBuyer">Buyer Closing Costs</button>
+    <button class="closing-subtab" data-closing-tab="closingSeller">Seller Closing Costs</button>
+  </div>
+
+  <section id="closingBuyer" class="closing-panel active">
+    <div class="calc-grid">
+      <div class="card">
+        <div class="section-title">
+          <div class="icon-box">🧾</div>
+          <div>
+            <h2>Buyer Closing Costs</h2>
+            <p>Estimate cash before closing, cash to bring to closing, and lender loan amount.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="full">
+            <label for="cbPurchasePrice">Purchase Price</label>
+            <input id="cbPurchasePrice" type="number" value="300000" />
+            <div class="note">Costs can vary. Check with your lender, title company, and local professionals.</div>
+          </div>
+
+          <div class="full">
+            <label>Financing Type</label>
+            <div class="toggle-row">
+              <button type="button" class="toggle-btn active" id="cbLenderBtn">Lender</button>
+              <button type="button" class="toggle-btn" id="cbCashBtn">Cash</button>
+            </div>
+            <div class="note">Cash sets appraisal to $0 and makes down payment equal the full purchase price.</div>
+          </div>
+
+          <div id="cbLenderWrap">
+            <div class="percent-row">
+              <label for="cbLenderAmount" style="margin:0;">Lender Closing Costs</label>
+              <div class="pct-wrap"><input class="pct-input" id="cbLenderPct" type="number" value="5" step="0.01" /><span>%</span></div>
+            </div>
+            <input id="cbLenderAmount" type="number" />
+            <div class="note">Closing costs usually range anywhere from 3% to 6%. This cost can vary. Check with your lender.</div>
+          </div>
+
+          <div>
+            <div class="percent-row">
+              <label for="cbEarnestAmount" style="margin:0;">Earnest Deposit</label>
+              <div class="pct-wrap"><input class="pct-input" id="cbEarnestPct" type="number" value="1" step="0.01" /><span>%</span></div>
+            </div>
+            <input id="cbEarnestAmount" type="number" />
+            <div class="note">This cost can vary. Check with your lender or agent. This amount is paid before closing. For lender deals it reduces the estimated loan amount. For cash deals it reduces what you still bring to closing.</div>
+          </div>
+
+          <div>
+            <label for="cbAppraisal">Appraisal</label>
+            <input id="cbAppraisal" type="number" value="600" />
+            <div class="note">This cost can vary. Check with your lender.</div>
+          </div>
+
+          <div>
+            <label for="cbInspection">Inspection</label>
+            <input id="cbInspection" type="number" value="500" />
+            <div class="note">This cost can vary. Check with your inspector.</div>
+          </div>
+
+          <div>
+            <label for="cbTitle">Title Insurance</label>
+            <input id="cbTitle" type="number" value="500" />
+            <div class="note">This cost can vary. Check with your title company.</div>
+          </div>
+
+          <div>
+            <label for="cbDown">Down Payment</label>
+            <input id="cbDown" type="number" value="0" />
+            <div class="note">This cost can vary. Check with your lender.</div>
+          </div>
+
+          <div>
+            <div class="percent-row">
+              <label for="cbTaxesFeesAmount" style="margin:0;">Estimated Taxes and Fees</label>
+              <div class="pct-wrap"><input class="pct-input" id="cbTaxesFeesPct" type="number" value="0.5" step="0.01" /><span>%</span></div>
+            </div>
+            <input id="cbTaxesFeesAmount" type="number" />
+            <div class="note">This cost can vary. Check with your lender or title company.</div>
+          </div>
+
+          <div>
+            <label for="cbSellerContrib">Seller Contributions</label>
+            <input id="cbSellerContrib" type="number" placeholder="Leave blank if none" />
+            <div class="note">This can vary based on the purchase agreement.</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-solid" onclick="calculateClosingBuyer(true)">Calculate Buyer Closing Costs</button>
+        </div>
+
+        <div class="disclaimer">Estimates based on publicly available and common market assumptions. Final figures may vary.</div>
+      </div>
+
+      <div class="card">
+        <div id="closingBuyerResultHeader" style="font-size:22px;font-weight:800;margin-bottom:8px;">Your Buyer Results</div>
+        <div style="color:#64748b;margin-bottom:14px;">Cash before closing is separate from what you still bring to the closing table.</div>
+
+        <div class="summary-box">
+          <div class="row"><span>Inspection</span><strong id="cbSumInspection">$0</strong></div>
+          <div class="row"><span>Earnest Deposit</span><strong id="cbSumEarnest">$0</strong></div>
+          <div class="row"><span>Appraisal</span><strong id="cbSumAppraisal">$0</strong></div>
+          <div class="row total"><span>Cash Before Closing</span><span id="cbSumBefore">$0</span></div>
+        </div>
+
+        <div class="summary-box" style="margin-top:14px;">
+          <div class="row"><span>Lender Closing Costs</span><strong id="cbSumLender">$0</strong></div>
+          <div class="row"><span>Title Insurance</span><strong id="cbSumTitle">$0</strong></div>
+          <div class="row"><span>Estimated Taxes and Fees</span><strong id="cbSumTaxes">$0</strong></div>
+          <div class="row"><span>Down Payment</span><strong id="cbSumDown">$0</strong></div>
+          <div class="row"><span>Seller Contributions</span><strong id="cbSumSeller">$0</strong></div>
+          <div class="row total"><span>Cash To Bring To Closing</span><span id="cbSumClosing">$0</span></div>
+          <div class="row"><span>Estimated Loan Amount</span><strong id="cbSumLoan">—</strong></div>
+        </div>
+
+        <div class="result-card">
+          <div class="small">Cash To Bring To Closing</div>
+          <div class="big" id="cbBigTotal">$0</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="closingSeller" class="closing-panel">
+    <div class="calc-grid">
+      <div class="card">
+        <div class="section-title">
+          <div class="icon-box">🏠</div>
+          <div>
+            <h2>Seller Closing Costs</h2>
+            <p>Focused on seller costs first, then shows estimated net after payoff and closing costs.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="full">
+            <label for="csSalePrice">Sale Price</label>
+            <input id="csSalePrice" type="number" value="350000" />
+            <div class="note">These costs can vary. Check with your title company and agent.</div>
+          </div>
+
+          <div>
+            <div class="percent-row">
+              <label for="csTitleAmount" style="margin:0;">Title Insurance</label>
+              <div class="pct-wrap"><input class="pct-input" id="csTitlePct" type="number" value="1" step="0.01" /><span>%</span></div>
+            </div>
+            <input id="csTitleAmount" type="number" />
+            <div class="note">This cost can vary. Check with your title company.</div>
+          </div>
+
+          <div>
+            <div class="percent-row">
+              <label for="csTaxesAmount" style="margin:0;">Estimated Taxes and Fees</label>
+              <div class="pct-wrap"><input class="pct-input" id="csTaxesPct" type="number" value="0.5" step="0.01" /><span>%</span></div>
+            </div>
+            <input id="csTaxesAmount" type="number" />
+            <div class="note">This cost can vary. Check with your title company.</div>
+          </div>
+
+          <div>
+            <div class="percent-row">
+              <label for="csBuyerAgentAmount" style="margin:0;">Buyer Agent Commission</label>
+              <div class="pct-wrap"><input class="pct-input" id="csBuyerAgentPct" type="number" step="0.01" /><span>%</span></div>
+            </div>
+            <input id="csBuyerAgentAmount" type="number" placeholder="Leave blank if not applicable" />
+            <div class="note">Commissions are negotiable. Please discuss your options with a licensed realtor.</div>
+          </div>
+
+          <div>
+            <div class="percent-row">
+              <label for="csSellerAgentAmount" style="margin:0;">Seller Agent Commission</label>
+              <div class="pct-wrap"><input class="pct-input" id="csSellerAgentPct" type="number" step="0.01" /><span>%</span></div>
+            </div>
+            <input id="csSellerAgentAmount" type="number" placeholder="Leave blank if not applicable" />
+            <div class="note">Commissions are negotiable. Please discuss your options with a licensed realtor.</div>
+          </div>
+
+          <div>
+            <label for="csContrib">Seller Contributions</label>
+            <input id="csContrib" type="number" placeholder="Leave blank if none" />
+            <div class="note">This cost can vary. Check your purchase agreement.</div>
+          </div>
+
+          <div>
+            <label for="csOther">Other Closing Costs</label>
+            <input id="csOther" type="number" value="0" />
+            <div class="note">This cost can vary. Check with your title company.</div>
+          </div>
+
+          <div>
+            <label for="csPayoff">Mortgage Payoff</label>
+            <input id="csPayoff" type="number" value="0" />
+            <div class="note">Check your lender for an exact payoff.</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-solid" onclick="calculateClosingSeller(true)">Calculate Seller Closing Costs</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div id="closingSellerResultHeader" style="font-size:22px;font-weight:800;margin-bottom:8px;">Your Seller Results</div>
+        <div style="color:#64748b;margin-bottom:14px;">Focused on seller costs first, then shows estimated net after payoff and closing costs.</div>
+
+        <div class="summary-box">
+          <div class="row"><span>Title Insurance</span><strong id="csSumTitle">$0</strong></div>
+          <div class="row"><span>Estimated Taxes and Fees</span><strong id="csSumTaxes">$0</strong></div>
+          <div class="row"><span>Buyer Agent Commission</span><strong id="csSumBuyerAgent">$0</strong></div>
+          <div class="row"><span>Seller Agent Commission</span><strong id="csSumSellerAgent">$0</strong></div>
+          <div class="row"><span>Seller Contributions</span><strong id="csSumContrib">$0</strong></div>
+          <div class="row"><span>Other Closing Costs</span><strong id="csSumOther">$0</strong></div>
+          <div class="row total"><span>Total Closing Costs</span><span id="csSumClosingCosts">$0</span></div>
+        </div>
+
+        <div class="summary-box" style="margin-top:14px;">
+          <div class="row"><span>Sale Price</span><strong id="csSumSalePrice">$0</strong></div>
+          <div class="row"><span>Mortgage Payoff</span><strong id="csSumPayoff">$0</strong></div>
+          <div class="row"><span>Total Closing Costs</span><strong id="csSumClosingCosts2">$0</strong></div>
+          <div class="row total"><span>Estimated Net</span><span id="csSumNet">$0</span></div>
+        </div>
+
+        <div class="result-card">
+          <div class="small">Estimated Net</div>
+          <div class="big" id="csBigTotal">$0</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section id="net" class="panel"><div class="calc-grid"><div class="card"><div class="section-title"><div class="icon-box">💰</div><div><h2>What You’ll Walk Away With</h2><p>Enter your home details to estimate how much money you’ll take home after the sale.</p></div></div><div class="form-grid"><div class="full"><label for="address">Property Address</label><input id="address" type="text" placeholder="Start typing address..." autocomplete="off" /></div><div class="full"><label for="salePrice">Sale Price ($)</label><input type="number" id="salePrice" placeholder="Enter sale price" value="350000" /></div><div><div class="percent-row"><label for="titleInsuranceAmount" style="margin:0;">Title Insurance</label><div class="pct-wrap"><input class="pct-input" type="number" id="titleInsurancePct" value="1" step="0.01" /><span>%</span></div></div><input class="readonly-output" type="number" id="titleInsuranceAmount" placeholder="$ amount" readonly /></div><div><div class="percent-row"><label for="taxesFeesAmount" style="margin:0;">Taxes and Fees</label><div class="pct-wrap"><input class="pct-input" type="number" id="taxesFeesPct" value="1" step="0.01" /><span>%</span></div></div><input class="readonly-output" type="number" id="taxesFeesAmount" placeholder="$ amount" readonly /></div><div><div class="percent-row"><label for="buyerCommissionAmount" style="margin:0;">Buyer Agent Commission</label><div class="pct-wrap"><input class="pct-input" type="number" id="buyerCommissionPct" step="0.01" /><span>%</span></div></div><input class="readonly-output" type="number" id="buyerCommissionAmount" placeholder="$ amount" readonly /></div><div><div class="percent-row"><label for="sellerCommissionAmount" style="margin:0;">Seller Agent Commission</label><div class="pct-wrap"><input class="pct-input" type="number" id="sellerCommissionPct" step="0.01" /><span>%</span></div></div><input class="readonly-output" type="number" id="sellerCommissionAmount" placeholder="$ amount" readonly /></div><div><label for="closingCosts">Closing Costs Paid by Seller ($)</label><input type="number" id="closingCosts" placeholder="Enter closing costs paid by seller" /></div><div><label for="amountOwed">Amount Owed ($)</label><input type="number" id="amountOwed" placeholder="Enter amount owed on mortgage or liens" /></div></div><div class="actions"><button class="btn btn-solid" onclick="calculateNet(true)">Calculate What I’ll Make</button><a class="btn btn-outline" href="https://listingsforyou.com/evaluation" target="_blank">Get Home Valuation</a><a class="btn btn-outline" id="netEmailLink" href="#">Email Jared This Address</a></div><div class="disclaimer">These calculations are estimates and do not reflect final numbers. Actual costs, payments, and proceeds may vary.</div></div><div class="card"><div id="sellerResult" style="font-size:22px;font-weight:800;margin-bottom:8px;">Your Estimated Results</div><div style="color:#64748b;margin-bottom:14px;">Uses your corrected percentage-based math and updated fields.</div><div class="summary-box"><div class="row"><span>Title insurance</span><strong id="sumTitle">$0</strong></div><div class="row"><span>Taxes and fees</span><strong id="sumTaxes">$0</strong></div><div class="row"><span>Buyer agent commission</span><strong id="sumBuyer">$0</strong></div><div class="row"><span>Seller agent commission</span><strong id="sumSeller">$0</strong></div><div class="row"><span>Closing costs</span><strong id="sumClosing">$0</strong></div><div class="row"><span>Amount owed</span><strong id="sumOwed">$0</strong></div><div class="row"><span>Total costs</span><strong id="sumTotal">$0</strong></div><div class="row total"><span>Seller net proceeds</span><span id="sumNet">$0</span></div></div><div id="results" class="results-card"><div class="small">Total Costs</div><div class="costs">$0.00</div><div class="net-label">Seller Net Proceeds</div><div class="net">$0.00</div></div><div class="note">This matches the logic from your revised calculator, just restyled to fit the app.</div><div class="actions"><a class="btn btn-solid" href="tel:2695992008">Call Jared</a><a class="btn btn-outline" href="mailto:jared@listingsforyou.com">Email Jared</a></div></div></div></section>
 
 <section id="affordability" class="panel"><div class="calc-grid"><div class="card"><div class="section-title"><div class="icon-box">🏡</div><div><h2>What You Can Afford</h2><p>Use your income and expenses to find a comfortable home price range.</p></div></div><div class="form-grid"><div><label for="af-income">Annual Income</label><input id="af-income" value="85000" /></div><div><label for="af-debts">Other Monthly Debts</label><input id="af-debts" value="450" /></div><div><label for="af-down">Down Payment</label><input id="af-down" value="12000" /></div><div><label for="af-rate">Interest Rate %</label><input id="af-rate" value="6.5" /></div><div><label for="af-term">Loan Term (Years)</label><input id="af-term" value="30" /></div><div><label for="af-taxrate">Property Tax Rate %</label><input id="af-taxrate" value="1.35" /></div><div><label for="af-ins">Home Insurance / Year</label><input id="af-ins" value="1400" /></div><div><label for="af-hoa">HOA / Month</label><input id="af-hoa" value="0" /></div><div class="full"><label for="af-area">Where Do You Want To Live?</label><input id="af-area" placeholder="Portage, Kalamazoo, Vicksburg..." /></div></div><div class="actions"><button class="btn btn-solid" onclick="showAffordabilityResult()">Calculate What I Can Afford</button><a class="btn btn-outline" id="af-idx" href="#" target="_blank">See Homes in My Price Range</a><a class="btn btn-outline" id="af-email" href="#">Send Me Homes Like This</a><a class="btn btn-outline" id="af-text" href="#">Text Me Homes Like This</a><a class="btn btn-outline" href="https://listingsforyou.com/affordability-calculator-1" target="_blank">Open Full Affordability Tool</a></div><div class="disclaimer">These calculations are estimates and do not reflect final numbers. Actual costs, payments, and proceeds may vary.</div></div><div class="card"><div id="affordabilityResult" style="font-size:22px;font-weight:800;margin-bottom:8px;">Estimated Buying Power</div><div style="color:#64748b;margin-bottom:14px;">A quick estimate using a 36% debt-to-income target.</div><div class="summary-box"><div class="row"><span>Monthly income</span><strong id="af-r-monthly">$0</strong></div><div class="row"><span>Estimated max housing budget</span><strong id="af-r-housing">$0</strong></div><div class="row total"><span>Estimated max home price</span><span id="af-r-price">$0</span></div></div><div class="note">Add the city or area, then open matching homes under that price or send the search to Jared.</div><div class="actions"><a class="btn btn-solid" href="tel:2695992008">Call About This Budget</a><a class="btn btn-outline" href="https://listingsforyou.com" target="_blank">Browse Listings</a></div></div></div></section>
 
@@ -200,7 +492,7 @@ h1{font-size:clamp(32px,5vw,56px);line-height:1.02;margin:0} .sub{max-width:760p
         <div class="row total"><span>Estimated monthly taxes</span><span id="rTaxMonthly">$0</span></div>
       </div>
       <div class="results-card" id="taxResultCard"><div class="small">Estimated Monthly Property Taxes</div><div class="big" id="rTaxMonthlyBig">$0</div></div>
-      <div class="note">This version uses imported 2025 statewide data. Update it once a year when Michigan publishes new total-rate files.</div>
+      <div class="note">This version uses imported 2025 statewide data.</div>
     </div>
   </div>
 </section>
@@ -403,6 +695,174 @@ function quickAreaSearch(area){
   window.location.href = buildSmartSearchUrl(area, "", "", "");
 }
 
+
+
+function setPctFromAmount(amountId, pctId, baseValue){
+  const base = n(baseValue);
+  const amt = n($(amountId).value);
+  const pct = base > 0 ? (amt / base) * 100 : 0;
+  $(pctId).value = pct ? (Math.round(pct * 100) / 100).toString() : "0";
+}
+function setAmountFromPct(pctId, amountId, baseValue){
+  const base = n(baseValue);
+  const pct = n($(pctId).value);
+  const amt = base * (pct / 100);
+  $(amountId).value = base ? (Math.round(amt * 100) / 100).toFixed(2) : "";
+}
+
+document.querySelectorAll(".closing-subtab").forEach(btn => btn.addEventListener("click", ()=>{
+  document.querySelectorAll(".closing-subtab").forEach(b => b.classList.toggle("active", b.dataset.closingTab === btn.dataset.closingTab));
+  document.querySelectorAll(".closing-panel").forEach(panel => panel.classList.toggle("active", panel.id === btn.dataset.closingTab));
+}));
+
+let closingFinanceType = "lender";
+
+function syncClosingBuyerFromPrice(){
+  const price = n($("cbPurchasePrice").value);
+  if(closingFinanceType === "lender") setAmountFromPct("cbLenderPct", "cbLenderAmount", price);
+  setAmountFromPct("cbEarnestPct", "cbEarnestAmount", price);
+  setAmountFromPct("cbTaxesFeesPct", "cbTaxesFeesAmount", price);
+  if(closingFinanceType === "cash"){
+    $("cbAppraisal").value = "0";
+    $("cbDown").value = price ? String(price) : "0";
+  }
+}
+function setClosingFinanceType(type){
+  closingFinanceType = type;
+  $("cbLenderBtn").classList.toggle("active", type === "lender");
+  $("cbCashBtn").classList.toggle("active", type === "cash");
+  $("cbLenderWrap").style.display = type === "lender" ? "block" : "none";
+  const price = n($("cbPurchasePrice").value);
+  if(type === "cash"){
+    $("cbAppraisal").value = "0";
+    $("cbDown").value = price ? String(price) : "0";
+  }
+  syncClosingBuyerFromPrice();
+  calculateClosingBuyer(false);
+}
+$("cbLenderBtn").addEventListener("click", ()=>setClosingFinanceType("lender"));
+$("cbCashBtn").addEventListener("click", ()=>setClosingFinanceType("cash"));
+
+function calculateClosingBuyer(scrollToAnswer=false){
+  const price = n($("cbPurchasePrice").value);
+  const earnest = n($("cbEarnestAmount").value);
+
+  if(closingFinanceType === "cash"){
+    $("cbAppraisal").value = "0";
+    $("cbDown").value = price ? String(price) : "0";
+  }
+
+  const inspection = n($("cbInspection").value);
+  const appraisal = n($("cbAppraisal").value);
+  const lenderCosts = closingFinanceType === "lender" ? n($("cbLenderAmount").value) : 0;
+  const title = n($("cbTitle").value);
+  const taxes = n($("cbTaxesFeesAmount").value);
+  const down = n($("cbDown").value);
+  const seller = n($("cbSellerContrib").value);
+
+  const cashBeforeClosing = inspection + earnest + appraisal;
+
+  let cashToBring = 0;
+  let loanAmount = 0;
+
+  if (closingFinanceType === "lender"){
+    cashToBring = lenderCosts + title + taxes + down - seller;
+    loanAmount = price - down - earnest;
+  } else {
+    cashToBring = price + title + taxes - earnest - seller;
+    loanAmount = 0;
+  }
+
+  if (cashToBring < 0) cashToBring = 0;
+  if (loanAmount < 0) loanAmount = 0;
+
+  $("cbSumInspection").textContent = money(inspection);
+  $("cbSumEarnest").textContent = money(earnest);
+  $("cbSumAppraisal").textContent = money(appraisal);
+  $("cbSumBefore").textContent = money(cashBeforeClosing);
+
+  $("cbSumLender").textContent = money(lenderCosts);
+  $("cbSumTitle").textContent = money(title);
+  $("cbSumTaxes").textContent = money(taxes);
+  $("cbSumDown").textContent = money(down);
+  $("cbSumSeller").textContent = money(seller);
+  $("cbSumClosing").textContent = money(cashToBring);
+  $("cbSumLoan").textContent = closingFinanceType === "lender" ? money(loanAmount) : "—";
+  $("cbBigTotal").textContent = money(cashToBring);
+
+  if(scrollToAnswer){
+    setTimeout(()=> $("closingBuyerResultHeader").scrollIntoView({behavior:"smooth", block:"start"}), 50);
+  }
+}
+
+function updateClosingSellerFromPrice(){
+  const price = n($("csSalePrice").value);
+  setAmountFromPct("csTitlePct","csTitleAmount",price);
+  setAmountFromPct("csTaxesPct","csTaxesAmount",price);
+  if (n($("csBuyerAgentPct").value)) setAmountFromPct("csBuyerAgentPct","csBuyerAgentAmount",price);
+  if (n($("csSellerAgentPct").value)) setAmountFromPct("csSellerAgentPct","csSellerAgentAmount",price);
+}
+
+function calculateClosingSeller(scrollToAnswer=false){
+  const salePrice = n($("csSalePrice").value);
+  const title = n($("csTitleAmount").value);
+  const taxes = n($("csTaxesAmount").value);
+  const buyerAgent = n($("csBuyerAgentAmount").value);
+  const sellerAgent = n($("csSellerAgentAmount").value);
+  const contrib = n($("csContrib").value);
+  const other = n($("csOther").value);
+  const payoff = n($("csPayoff").value);
+
+  const closingCosts = title + taxes + buyerAgent + sellerAgent + contrib + other;
+  let estimatedNet = salePrice - payoff - closingCosts;
+  if (estimatedNet < 0) estimatedNet = 0;
+
+  $("csSumTitle").textContent = money(title);
+  $("csSumTaxes").textContent = money(taxes);
+  $("csSumBuyerAgent").textContent = money(buyerAgent);
+  $("csSumSellerAgent").textContent = money(sellerAgent);
+  $("csSumContrib").textContent = money(contrib);
+  $("csSumOther").textContent = money(other);
+  $("csSumClosingCosts").textContent = money(closingCosts);
+
+  $("csSumSalePrice").textContent = money(salePrice);
+  $("csSumPayoff").textContent = money(payoff);
+  $("csSumClosingCosts2").textContent = money(closingCosts);
+  $("csSumNet").textContent = money(estimatedNet);
+  $("csBigTotal").textContent = money(estimatedNet);
+
+  if(scrollToAnswer){
+    setTimeout(()=> $("closingSellerResultHeader").scrollIntoView({behavior:"smooth", block:"start"}), 50);
+  }
+}
+
+$("cbPurchasePrice").addEventListener("input", ()=>{ syncClosingBuyerFromPrice(); calculateClosingBuyer(false); });
+$("cbLenderPct").addEventListener("input", ()=>{ setAmountFromPct("cbLenderPct","cbLenderAmount",$("cbPurchasePrice").value); calculateClosingBuyer(false); });
+$("cbLenderAmount").addEventListener("input", ()=>{ setPctFromAmount("cbLenderAmount","cbLenderPct",$("cbPurchasePrice").value); calculateClosingBuyer(false); });
+$("cbEarnestPct").addEventListener("input", ()=>{ setAmountFromPct("cbEarnestPct","cbEarnestAmount",$("cbPurchasePrice").value); calculateClosingBuyer(false); });
+$("cbEarnestAmount").addEventListener("input", ()=>{ setPctFromAmount("cbEarnestAmount","cbEarnestPct",$("cbPurchasePrice").value); calculateClosingBuyer(false); });
+$("cbTaxesFeesPct").addEventListener("input", ()=>{ setAmountFromPct("cbTaxesFeesPct","cbTaxesFeesAmount",$("cbPurchasePrice").value); calculateClosingBuyer(false); });
+$("cbTaxesFeesAmount").addEventListener("input", ()=>{ setPctFromAmount("cbTaxesFeesAmount","cbTaxesFeesPct",$("cbPurchasePrice").value); calculateClosingBuyer(false); });
+["cbAppraisal","cbInspection","cbTitle","cbDown","cbSellerContrib"].forEach(id => $(id).addEventListener("input", ()=>calculateClosingBuyer(false)));
+
+$("csSalePrice").addEventListener("input", ()=>{ 
+  updateClosingSellerFromPrice(); 
+  calculateClosingSeller(false); 
+});
+$("csTitlePct").addEventListener("input", ()=>{ setAmountFromPct("csTitlePct","csTitleAmount",$("csSalePrice").value); calculateClosingSeller(false); });
+$("csTitleAmount").addEventListener("input", ()=>{ setPctFromAmount("csTitleAmount","csTitlePct",$("csSalePrice").value); calculateClosingSeller(false); });
+$("csTaxesPct").addEventListener("input", ()=>{ setAmountFromPct("csTaxesPct","csTaxesAmount",$("csSalePrice").value); calculateClosingSeller(false); });
+$("csTaxesAmount").addEventListener("input", ()=>{ setPctFromAmount("csTaxesAmount","csTaxesPct",$("csSalePrice").value); calculateClosingSeller(false); });
+$("csBuyerAgentPct").addEventListener("input", ()=>{ setAmountFromPct("csBuyerAgentPct","csBuyerAgentAmount",$("csSalePrice").value); calculateClosingSeller(false); });
+$("csBuyerAgentAmount").addEventListener("input", ()=>{ setPctFromAmount("csBuyerAgentAmount","csBuyerAgentPct",$("csSalePrice").value); calculateClosingSeller(false); });
+$("csSellerAgentPct").addEventListener("input", ()=>{ setAmountFromPct("csSellerAgentPct","csSellerAgentAmount",$("csSalePrice").value); calculateClosingSeller(false); });
+$("csSellerAgentAmount").addEventListener("input", ()=>{ setPctFromAmount("csSellerAgentAmount","csSellerAgentPct",$("csSalePrice").value); calculateClosingSeller(false); });
+["csContrib","csOther","csPayoff"].forEach(id => $(id).addEventListener("input", ()=>calculateClosingSeller(false)));
+
+syncClosingBuyerFromPrice();
+updateClosingSellerFromPrice();
+calculateClosingBuyer(false);
+calculateClosingSeller(false);
 </script>
 </body>
 </html>
