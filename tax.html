@@ -1,0 +1,340 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michigan Property Tax Estimator</title>
+
+<style>
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial,sans-serif;
+    background:#eef6fb;
+}
+
+.tax-wrap{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 10px 30px rgba(2,32,71,.12);
+}
+
+.tax-wrap h1{
+    margin:0 0 10px;
+    font-size:38px;
+    color:#062b5f;
+    text-align:center;
+}
+
+.tax-wrap p{
+    text-align:center;
+    color:#475569;
+    margin-bottom:28px;
+    line-height:1.5;
+}
+
+.tax-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+@media(max-width:760px){
+    .tax-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    font-weight:700;
+    margin-bottom:8px;
+    color:#0f172a;
+}
+
+input,select{
+    padding:14px;
+    border-radius:14px;
+    border:1px solid #cbd5e1;
+    font-size:16px;
+}
+
+.tax-btn{
+    margin-top:26px;
+    width:100%;
+    border:none;
+    border-radius:18px;
+    background:#062b5f;
+    color:#fff;
+    padding:18px;
+    font-size:18px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.tax-btn:hover{
+    background:#0b3b74;
+}
+
+.results{
+    margin-top:28px;
+    background:#f8fafc;
+    border:1px solid #dbeafe;
+    border-radius:22px;
+    padding:24px;
+    text-align:center;
+}
+
+.results small{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    color:#64748b;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+
+.monthly{
+    font-size:52px;
+    font-weight:900;
+    color:#15803d;
+}
+
+.annual{
+    margin-top:12px;
+    font-size:22px;
+    color:#334155;
+}
+
+.note{
+    margin-top:18px;
+    font-size:13px;
+    color:#64748b;
+    line-height:1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="tax-wrap">
+
+    <h1>Michigan Property Tax Estimator</h1>
+
+    <p>
+        Estimate monthly Michigan property taxes using home value,
+        county, local municipality, school district, and homestead status.
+    </p>
+
+    <div class="tax-grid">
+
+        <div class="field">
+            <label>Estimated Home Value</label>
+            <input type="number" id="homeValue" value="300000">
+        </div>
+
+        <div class="field">
+            <label>County</label>
+            <select id="county"></select>
+        </div>
+
+        <div class="field">
+            <label>City / Township / Village</label>
+            <select id="municipality"></select>
+        </div>
+
+        <div class="field">
+            <label>School District</label>
+            <select id="district"></select>
+        </div>
+
+        <div class="field">
+            <label>Homestead Status</label>
+            <select id="homestead">
+                <option value="1">Homestead</option>
+                <option value="1.4">Non-Homestead</option>
+            </select>
+        </div>
+
+    </div>
+
+    <button class="tax-btn" onclick="calculateTaxes()">
+        Calculate Property Taxes
+    </button>
+
+    <div class="results">
+
+        <small>Estimated Monthly Property Taxes</small>
+
+        <div class="monthly" id="monthlyTaxes">$0</div>
+
+        <div class="annual" id="annualTaxes">
+            Annual Taxes: $0
+        </div>
+
+        <div class="note">
+            Estimates are based on approximate Michigan millage rates and SEV calculations.
+            Actual tax bills may vary.
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const taxData = {
+
+    "Kalamazoo County": {
+        millage: 42,
+        municipalities: {
+            "Portage": ["Portage Public Schools"],
+            "Kalamazoo": ["Kalamazoo Public Schools"],
+            "Texas Township": ["Mattawan Schools"],
+            "Oshtemo Township": ["Kalamazoo Public Schools"],
+            "Vicksburg": ["Vicksburg Community Schools"]
+        }
+    },
+
+    "Van Buren County": {
+        millage: 44,
+        municipalities: {
+            "Paw Paw": ["Paw Paw Public Schools"],
+            "Mattawan": ["Mattawan Schools"],
+            "South Haven": ["South Haven Public Schools"]
+        }
+    },
+
+    "Calhoun County": {
+        millage: 38,
+        municipalities: {
+            "Battle Creek": ["Lakeview Schools"],
+            "Marshall": ["Marshall Public Schools"]
+        }
+    },
+
+    "Berrien County": {
+        millage: 36,
+        municipalities: {
+            "St. Joseph": ["St. Joseph Public Schools"],
+            "Niles": ["Niles Community Schools"]
+        }
+    }
+
+};
+
+const countySelect = document.getElementById("county");
+const municipalitySelect = document.getElementById("municipality");
+const districtSelect = document.getElementById("district");
+
+function loadCounties(){
+
+    countySelect.innerHTML = "";
+
+    Object.keys(taxData).forEach(county => {
+
+        const option = document.createElement("option");
+        option.value = county;
+        option.textContent = county;
+
+        countySelect.appendChild(option);
+
+    });
+
+    loadMunicipalities();
+
+}
+
+function loadMunicipalities(){
+
+    const county = countySelect.value;
+
+    municipalitySelect.innerHTML = "";
+
+    Object.keys(taxData[county].municipalities).forEach(city => {
+
+        const option = document.createElement("option");
+        option.value = city;
+        option.textContent = city;
+
+        municipalitySelect.appendChild(option);
+
+    });
+
+    loadDistricts();
+
+}
+
+function loadDistricts(){
+
+    const county = countySelect.value;
+    const municipality = municipalitySelect.value;
+
+    districtSelect.innerHTML = "";
+
+    taxData[county].municipalities[municipality].forEach(district => {
+
+        const option = document.createElement("option");
+        option.value = district;
+        option.textContent = district;
+
+        districtSelect.appendChild(option);
+
+    });
+
+}
+
+countySelect.addEventListener("change", loadMunicipalities);
+municipalitySelect.addEventListener("change", loadDistricts);
+
+loadCounties();
+
+function calculateTaxes(){
+
+    const homeValue =
+        parseFloat(document.getElementById("homeValue").value) || 0;
+
+    const county =
+        countySelect.value;
+
+    const homesteadFactor =
+        parseFloat(document.getElementById("homestead").value);
+
+    const millage =
+        taxData[county].millage;
+
+    const sev =
+        homeValue * 0.5;
+
+    const annualTaxes =
+        (sev / 1000) * millage * homesteadFactor;
+
+    const monthlyTaxes =
+        annualTaxes / 12;
+
+    document.getElementById("monthlyTaxes").innerHTML =
+        "$" + monthlyTaxes.toLocaleString(undefined,{
+            maximumFractionDigits:0
+        });
+
+    document.getElementById("annualTaxes").innerHTML =
+        "Annual Taxes: $" +
+        annualTaxes.toLocaleString(undefined,{
+            maximumFractionDigits:0
+        });
+
+}
+
+</script>
+
+</body>
+</html>
+```
